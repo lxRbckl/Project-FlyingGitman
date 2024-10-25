@@ -1,6 +1,7 @@
 ﻿using System;
-using OctokitManager;
-using DatabaseManager;
+
+using SocialOctopus.Managers;
+using SocialOctopus.Interfaces;
 
 
 namespace SocialOctopus
@@ -11,11 +12,12 @@ namespace SocialOctopus
       static void Main(string[] args)
       {
 
-         Console.WriteLine("hello ok");
-         Console.WriteLine('o');
+         IOctokit octokitHandler = new OctokitManager();
+         IDatabase databaseHandler = new DatabaseManager();
+         
 
       }
 
    }
 
-}
+}  

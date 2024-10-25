@@ -1,12 +1,11 @@
 using System;
-using System.Dynamic;
 using SocialOctopus.Interfaces;
 
 
-namespace OctokitManager
+namespace SocialOctopus.Managers
 {
 
-   public class OctokitManager : IOctokitManager
+   public class OctokitManager : IOctokit
    {
 
       // properties <
@@ -18,7 +17,7 @@ namespace OctokitManager
       public string[] getFollowers(string user)
       {
 
-         return [];
+         return new string[0];
 
       }
 
@@ -26,7 +25,7 @@ namespace OctokitManager
       public string[] getFollowing(string user)
       {
 
-         return [];
+         return new string[0];
 
       }
 

@@ -1,6 +1,6 @@
 namespace SocialOctopus.Interfaces
 {
-    public interface IOctokitManager
+    public interface IOctokit
     {
 
       // methods <

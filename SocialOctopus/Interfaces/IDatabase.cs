@@ -1,8 +1,8 @@
 
-namespace IDatabaseManager
+namespace SocialOctopus.Interfaces
 {
 
-   public interface IDatabaseManager
+   public interface IDatabase
    {
 
       // properties <
