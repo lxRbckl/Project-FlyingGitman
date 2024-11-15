@@ -1,1 +1,1 @@
-# SocialOctopus
+# GitHub Manager
