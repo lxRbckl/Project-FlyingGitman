@@ -12,25 +12,25 @@ class GithubManager:
       self._headers = {"Authorization" : f"token {token}"}
 
 
-   def userGetDetails(user):
+   def userGetDetails(self, user):
       """ GET /users/{username} """
 
-      pass
+      return get(url = self._url(f"/users/{user}"), headers = self._headers).json()
 
 
-   def userGetFollowing(user):
+   def userGetFollowing(self, user):
       """ GET /user/following/{username} """
 
-      pass
+      return get(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
 
 
-   def followUser(user):
+   def followUser(self, user):
       """ PUT /user/following/{username} """
 
-      pass
+      return put(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
 
 
-   def unfollowUser(user):
+   def unfollowUser(self, user):
       """ DELETE /user/following/{username} """
 
-      pass
+      return delete(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
