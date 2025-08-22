@@ -8,5 +8,5 @@ x = GithubManager(token = "")
 
 # print(x.userGetDetails(user = "ala2q6"))
 
-# print(x.userGetFollowers(user = "lxRbc9999999kl"))
-print(x.userGetFollowers(user = "lxRbckl"))
+# print(x._userGetFollowers(user = "lxRbc9999999kl"))
+# print(x._userGetFollowers(user = "lxRbckl"))

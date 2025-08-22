@@ -1,4 +1,19 @@
-from requests import (get, put, delete)
+from functools import wraps
+from requests import (get, put, delete, RequestException)
+
+
+def errorHandler(func):
+    
+    @wraps(func)
+    def wrapper(self, *args, **kwargs):
+        
+        try: return func(self, *args, **kwargs)
+        except Exception as e:
+            
+            print(f"{func.__name__}: {e}")
+            return False
+        
+    return wrapper
 
 
 class GithubManager:
@@ -12,13 +27,15 @@ class GithubManager:
       self._headers = {"Authorization" : f"token {token}"}
 
 
-   def userGetDetails(self, user):
+   @errorHandler
+   def _userGetDetails(self, user):
       """ GET /users/{username} """
 
       return get(url = self._url(f"/users/{user}"), headers = self._headers).json()
 
 
-   def userGetFollowers(self, user, per = 100):
+   @errorHandler
+   def _userGetFollowers(self, user):
       """ GET all followers of a given user """
 
       page = 1
@@ -26,7 +43,7 @@ class GithubManager:
       while (response := get(
          
          headers = self._headers,
-         url = self._url(f"/users/{user}/followers?per_page={per}&page={page}")
+         url = self._url(f"/users/{user}/followers?per_page=100&page={page}")
          
       ).json()):
          
@@ -36,13 +53,15 @@ class GithubManager:
       return followers
    
 
-   def followUser(self, user):
+   @errorHandler
+   def _followUser(self, user):
       """ PUT /user/following/{username} """
 
-      return put(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
+      return put(url = self._url(f"/user/following/{user}"), headers = self._headers)
 
 
-   def unfollowUser(self, user):
+   @errorHandler
+   def _unfollowUser(self, user):
       """ DELETE /user/following/{username} """
 
-      return delete(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
+      return delete(url = self._url(f"/user/following/{user}"), headers = self._headers)
