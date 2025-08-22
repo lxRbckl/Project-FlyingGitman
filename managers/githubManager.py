@@ -1,19 +1,19 @@
 from functools import wraps
-from requests import (get, put, delete, RequestException)
+from requests import (get, put, delete)
 
 
 def errorHandler(func):
     
-    @wraps(func)
-    def wrapper(self, *args, **kwargs):
+   @wraps(func)
+   def wrapper(self, *args, **kwargs):
         
-        try: return func(self, *args, **kwargs)
-        except Exception as e:
+      try: return func(self, *args, **kwargs)
+      except Exception as e:
             
-            print(f"{func.__name__}: {e}")
-            return False
+         print(f"{func.__name__}: {e}")
+         return False
         
-    return wrapper
+   return wrapper
 
 
 class GithubManager:
