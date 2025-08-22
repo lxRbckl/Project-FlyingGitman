@@ -18,11 +18,23 @@ class GithubManager:
       return get(url = self._url(f"/users/{user}"), headers = self._headers).json()
 
 
-   def userGetFollowing(self, user):
-      """ GET /user/following/{username} """
+   def userGetFollowers(self, user, per = 100):
+      """ GET all followers of a given user """
 
-      return get(url = self._url(f"/user/following/{user}"), headers = self._headers).json()
+      page = 1
+      followers = []
+      while (response := get(
+         
+         headers = self._headers,
+         url = self._url(f"/users/{user}/followers?per_page={per}&page={page}")
+         
+      ).json()):
+         
+         followers.extend([u["login"] for u in response])
+         page += 1
 
+      return followers
+   
 
    def followUser(self, user):
       """ PUT /user/following/{username} """
