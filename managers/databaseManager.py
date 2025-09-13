@@ -1,4 +1,4 @@
-
+from stashdb import DB
 
 
 class DatabaseManager:
